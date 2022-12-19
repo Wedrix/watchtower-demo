@@ -18,12 +18,13 @@
         "doctrine/doctrine-migrations-bundle": "^3.0",
         "doctrine/orm": "^2.10",
         "league/commonmark": "^2.1",
+        "nelmio/cors-bundle": "^2.2",
         "symfony/apache-pack": "^1.0",
         "symfony/asset": "^6.2",
         "symfony/console": "^6.2",
         "symfony/dotenv": "^6.2",
         "symfony/expression-language": "^6.2",
-        "symfony/flex": "^2.0",
+        "symfony/flex": "^2.2",
         "symfony/form": "^6.2",
         "symfony/framework-bundle": "^6.2",
         "symfony/html-sanitizer": "^6.2",
@@ -42,7 +43,8 @@
         "symfony/yaml": "^6.2",
         "twig/extra-bundle": "^3.3",
         "twig/intl-extra": "^3.3",
-        "twig/markdown-extra": "^3.3"
+        "twig/markdown-extra": "^3.3",
+        "wedrix/watchtower": "^1.2"
     },
     "require-dev": {
         "dama/doctrine-test-bundle": "^7.0",
@@ -83,7 +85,8 @@
     "scripts": {
         "auto-scripts": {
             "cache:clear": "symfony-cmd",
-            "assets:install %PUBLIC_DIR%": "symfony-cmd"
+            "assets:install %PUBLIC_DIR%": "symfony-cmd",
+            "%BIN_DIR%/console watchtower:schema:generate": "php-script"
         },
         "post-install-cmd": [
             "@auto-scripts"
@@ -94,7 +97,7 @@
     },
     "extra": {
         "symfony": {
-            "allow-contrib": true,
+            "allow-contrib": "true",
             "require": "6.2.*"
         }
     }

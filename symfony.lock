@@ -132,6 +132,18 @@
     "monolog/monolog": {
         "version": "2.3.5"
     },
+    "nelmio/cors-bundle": {
+        "version": "2.2",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "main",
+            "version": "1.5",
+            "ref": "6bea22e6c564fba3a1391615cada1437d0bde39c"
+        },
+        "files": [
+            "config/packages/nelmio_cors.yaml"
+        ]
+    },
     "nette/schema": {
         "version": "v1.2.2"
     },
@@ -527,5 +539,32 @@
     },
     "twig/twig": {
         "version": "v3.3.4"
+    },
+    "wedrix/watchtower": {
+        "version": "1.2",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "main",
+            "version": "1.0",
+            "ref": "05bcc9c33a8d8c259b1f185cd0a179036d0309b8"
+        },
+        "files": [
+            "src/Command/Watchtower/AddPlugin.php",
+            "src/Command/Watchtower/AddScalarTypeDefinition.php",
+            "src/Command/Watchtower/GenerateSchema.php",
+            "src/Command/Watchtower/ListPlugins.php",
+            "src/Command/Watchtower/ListScalarTypeDefinitions.php",
+            "src/Command/Watchtower/UpdateSchema.php",
+            "src/Controller/Watchtower/Controller.php",
+            "config/graphql/.gitignore",
+            "config/graphql/plugins/.gitignore",
+            "config/graphql/plugins/authorizors/.gitignore",
+            "config/graphql/plugins/filters/.gitignore",
+            "config/graphql/plugins/mutations/.gitignore",
+            "config/graphql/plugins/orderings/.gitignore",
+            "config/graphql/plugins/resolvers/.gitignore",
+            "config/graphql/plugins/selectors/.gitignore",
+            "config/graphql/scalar_type_definitions/.gitignore"
+        ]
     }
 }

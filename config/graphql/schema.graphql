@@ -1,0 +1,131 @@
+type Comment {
+  id: Int!
+  content: String!
+  publishedAt: DateTime!
+  post: Post!
+  author: User!
+}
+
+input CommentsQueryParams {
+  limit: Limit
+  page: Page
+  distinct: Boolean
+  filters: CommentsQueryFiltersParams
+  ordering: CommentsQueryOrderingParams
+}
+
+input CommentsQueryFiltersParams {
+  ids: [Int!]
+}
+
+input CommentsQueryOrderingParams {
+  newest: CommentsQueryOrderingNewestParams
+}
+
+input CommentsQueryOrderingNewestParams {
+  rank: Int!
+}
+
+scalar DateTime
+
+scalar Limit
+
+scalar Page
+
+type Post {
+  id: Int!
+  title: String!
+  slug: String!
+  summary: String!
+  content: String!
+  publishedAt: DateTime!
+  author: User!
+  comments(queryParams: CommentsQueryParams): [Comment!]!
+  tags(queryParams: TagsQueryParams): [Tag!]!
+  commentsCount: Int!
+}
+
+input PostsQueryParams {
+  limit: Limit
+  page: Page
+  distinct: Boolean
+  ordering: PostsQueryOrderingParams
+}
+
+input PostsQueryOrderingParams {
+  newest: PostsQueryOrderingNewestParams
+}
+
+input PostsQueryOrderingNewestParams {
+  rank: Int!
+}
+
+type Query {
+  post(id: ID!): Post!
+  posts(queryParams: PostsQueryParams): [Post!]!
+  postsCount: Int!
+  tag(id: ID!): Tag!
+  tags(queryParams: TagsQueryParams): [Tag!]!
+  user(id: ID!): User!
+  users(queryParams: UsersQueryParams): [User!]!
+  comment(id: ID!): Comment!
+  comments(queryParams: CommentsQueryParams): [Comment!]!
+}
+
+type Tag {
+  id: Int!
+  name: String!
+}
+
+input TagsQueryParams {
+  limit: Limit
+  page: Page
+  distinct: Boolean
+}
+
+type User {
+  id: Int!
+  fullName: String!
+  username: String!
+  email: String!
+  password: String!
+}
+
+input UsersQueryParams {
+  limit: Limit
+  page: Page
+  distinct: Boolean
+}
+
+type Mutation {
+  createPost(
+    title: String!
+    content: String!
+    authorId: Int!
+  ): CreatePostResponse!
+}
+
+union CreatePostResponse = SuccessfulPostResponse | FailedPostResponse
+
+type SuccessfulPostResponse implements Response {
+  status: Status!
+  createdPost: Post!
+}
+
+type FailedPostResponse implements Response {
+  status: Status!
+  errors: [Error!]!
+}
+
+type Error {
+  body: String!
+}
+
+interface Response {
+  status: Status!
+}
+
+enum Status {
+  SUCCESSFUL
+  FAILED
+}
