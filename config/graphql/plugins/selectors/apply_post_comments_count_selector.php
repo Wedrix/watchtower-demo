@@ -14,6 +14,13 @@ function apply_post_comments_count_selector(
 {
     $rootAlias = $queryBuilder->rootAlias();
 
-    $queryBuilder->join("$rootAlias.comments", "comments")
-                ->addSelect("COUNT(comments) AS commentsCount");
+    if ($node->isACollection()) {
+        $queryBuilder->join("$rootAlias.comments", "comments")
+                    ->addGroupBy("$rootAlias.id")
+                    ->addSelect("COUNT(comments) AS commentsCount");
+    }
+    else {
+        $queryBuilder->join("$rootAlias.comments", "comments")
+                    ->addSelect("COUNT(comments) AS commentsCount");
+    }
 }
