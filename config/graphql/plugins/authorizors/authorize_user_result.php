@@ -2,11 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Wedrix\Watchtower\Plugins\Authorizors;
+namespace Wedrix\Watchtower\Plugin\AuthorizorPlugin;
 
 use Wedrix\Watchtower\Resolver\Node;
+use Wedrix\Watchtower\Resolver\Result;
 
-function authorize_user_node(
+function authorize_user_result(
+    Result $result,
     Node $node
 ): void
 {

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Wedrix\Watchtower\Plugins\Mutations;
+namespace Wedrix\Watchtower\Plugin\MutationPlugin;
 
 use App\Entity\Post;
 use App\Entity\User;
